@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "ResearchSurv Extension",
+  "version": "1.2",
+  "description": "Extension to view ResearchSurv survey XML in RAW format with colorful theme.",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "scripting",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "https://researchsurv.com/*",
+    "https://prodegemr.decipherinc.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://researchsurv.com/apps/lumos/*:raw",
+        "https://researchsurv.com/admin/vc/show?file=selfserve/*/survey.xml&when=*",
+        "https://prodegemr.decipherinc.com/apps/lumos/*:raw",
+        "https://prodegemr.decipherinc.com/admin/vc/show?file=selfserve/*/survey.xml&when=*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
+}
